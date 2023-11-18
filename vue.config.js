@@ -72,6 +72,10 @@ module.exports = {
       .end();
 
     config.when(process.env.NODE_ENV !== "development", (config) => {
+      config.plugin("html").tap((args) => {
+        args[0].filename = "admin.html";
+        return args;
+      });
       config
         .plugin("ScriptExtHtmlWebpackPlugin")
         .after("html")
